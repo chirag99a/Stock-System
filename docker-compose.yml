@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/instant_strike
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - OPENAI_MODEL=gpt-4o-mini
+      - NOTIFICATION_WEBHOOK_URL=
+      - NOTIFICATION_MAX_RETRIES=5
+      - RECONCILIATION_INTERVAL_SECONDS=60
+    depends_on:
+      - redis
+      - postgres
+    ports:
+      - "8000:8000"
+
+  worker:
+    build: .
+    command: celery -A app.notifications.celery_app.celery_app worker --loglevel=INFO -Q default
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/instant_strike
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - NOTIFICATION_WEBHOOK_URL=
+      - NOTIFICATION_MAX_RETRIES=5
+    depends_on:
+      - redis
+      - postgres
+
+  beat:
+    build: .
+    command: celery -A app.notifications.celery_app.celery_app beat --loglevel=INFO
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@postgres:5432/instant_strike
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - RECONCILIATION_INTERVAL_SECONDS=60
+      - NOTIFICATION_WEBHOOK_URL=
+    depends_on:
+      - redis
+      - postgres
+
+  redis:
+    image: redis:7.4-alpine
+    ports:
+      - "6379:6379"
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=instant_strike
+    ports:
+      - "5432:5432"
