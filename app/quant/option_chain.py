@@ -1,3 +1,6 @@
+import math
+
+
 def select_atm_strike(atm_spot: float) -> int:
     """
     Select ATM strike using standard NIFTY option-chain increments.
@@ -7,7 +10,7 @@ def select_atm_strike(atm_spot: float) -> int:
     - We round to the nearest 50-point strike.
 
     This is the only ambiguous example in the spec ("third row is not a typo").
-    Applying "round to nearest 50" yields:
+    Applying "round to nearest 50 with .5 rounding up" yields:
       atm=22432  -> 22450
       atm=22450  -> 22450
       atm=22424  -> 22400
@@ -15,8 +18,8 @@ def select_atm_strike(atm_spot: float) -> int:
       atm=22400  -> 22400
     """
     step = 50
-    # nearest step; .5 rounds up
-    return int(round(atm_spot / step)) * step
+    # math.floor(x + 0.5) ensures exact ties (.5) always round up to +infinity
+    return int(math.floor(atm_spot / step + 0.5)) * step
 
 
 def build_option_instrument(security_id: str, strike: int, option_type: str) -> str:

@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   api:
     build: .
@@ -13,11 +11,17 @@ services:
       - NOTIFICATION_WEBHOOK_URL=
       - NOTIFICATION_MAX_RETRIES=5
       - RECONCILIATION_INTERVAL_SECONDS=60
+      - LOG_LEVEL=INFO
     depends_on:
-      - redis
-      - postgres
+      redis:
+        condition: service_started
+      postgres:
+        condition: service_started
     ports:
       - "8000:8000"
+    volumes:
+      - ./reports:/app/reports
+      - ./tests:/app/tests
 
   worker:
     build: .
@@ -30,8 +34,10 @@ services:
       - NOTIFICATION_WEBHOOK_URL=
       - NOTIFICATION_MAX_RETRIES=5
     depends_on:
-      - redis
-      - postgres
+      redis:
+        condition: service_started
+      postgres:
+        condition: service_started
 
   beat:
     build: .
@@ -44,8 +50,10 @@ services:
       - RECONCILIATION_INTERVAL_SECONDS=60
       - NOTIFICATION_WEBHOOK_URL=
     depends_on:
-      - redis
-      - postgres
+      redis:
+        condition: service_started
+      postgres:
+        condition: service_started
 
   redis:
     image: redis:7.4-alpine

@@ -1,10 +1,14 @@
 import asyncio
+import logging
 import os
-from datetime import datetime
+
+import sqlalchemy as sa
 
 from app.notifications.celery_app import celery_app
 from app.persistence.db import get_engine, get_sessionmaker
 from app.persistence.models import Trade
+
+logger = logging.getLogger(__name__)
 
 
 async def _enqueue_missing_notifications_async() -> int:
@@ -15,10 +19,8 @@ async def _enqueue_missing_notifications_async() -> int:
     async with sessionmaker() as session:
         async with session.begin():
             # pending/failed notifications are those not yet success
-            # (we keep only trades that are not success)
             result = await session.execute(
-                # SQLAlchemy 2.0: use ORM select
-                __import__("sqlalchemy").select(Trade).where(Trade.notification_status != "success").limit(500)
+                sa.select(Trade).where(Trade.notification_status != "success").limit(500)
             )
             missing = list(result.scalars().all())
 
@@ -26,13 +28,17 @@ async def _enqueue_missing_notifications_async() -> int:
     from app.notifications.tasks import enqueue_notification_for_trade
 
     for trade in missing:
-        await enqueue_notification_for_trade(
-            trade_id=trade.id,
-            dedup_key=trade.notification_dedup_key,
-            message_template=trade,
-        )
-        enqueued += 1
+        try:
+            await enqueue_notification_for_trade(
+                trade_id=trade.id,
+                dedup_key=trade.notification_dedup_key,
+                message_template=trade,
+            )
+            enqueued += 1
+        except Exception as e:
+            logger.error("Failed to re-enqueue notification for trade %s: %s", trade.id, e)
 
+    logger.info("Reconciliation complete: %d notifications re-enqueued out of %d pending", enqueued, len(missing))
     return enqueued
 
 

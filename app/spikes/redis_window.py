@@ -30,8 +30,8 @@ class RedisPriceWindow:
         key = self._zset_key(security_id)
 
         await self.redis_client.zadd(key, {member: unix_ms})
-        # Trim older than window
-        cutoff_ms = unix_ms - (self.window_seconds * 1000)
+        # Trim older than window + buffer so fetch_price_at_or_before_shift(..., shift_seconds=60) has target available
+        cutoff_ms = unix_ms - ((self.window_seconds + 5) * 1000)
         await self.redis_client.zremrangebyscore(key, "-inf", cutoff_ms)
 
     async def fetch_price_at_or_before_shift(

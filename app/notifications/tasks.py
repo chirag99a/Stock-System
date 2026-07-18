@@ -1,8 +1,12 @@
+import asyncio
+import logging
 import os
 from typing import Any
 
 from app.persistence.db import get_engine, get_sessionmaker
 from app.persistence.models import Trade
+
+logger = logging.getLogger(__name__)
 
 
 async def _mark_notification_sent(trade_id: str) -> bool:
@@ -36,6 +40,7 @@ def _send_notification_http(message: dict) -> None:
 
     webhook = os.getenv("NOTIFICATION_WEBHOOK_URL", "")
     if not webhook:
+        logger.info("Notification delivered (no webhook configured): %s", message)
         return
 
     r = requests.post(webhook, json=message, timeout=5)
@@ -50,6 +55,7 @@ async def _send_notification_idempotent(trade_id: str, dedup_key: str, message: 
     # Gate: mark notification success only once.
     can_mark = await _mark_notification_sent(trade_id)
     if not can_mark:
+        logger.debug("Notification already sent for trade %s (dedup: %s)", trade_id, dedup_key)
         return
     _send_notification_http(message)
 
@@ -73,25 +79,28 @@ async def enqueue_notification_for_trade(trade_id: str, dedup_key: str, message_
     else:
         payload["message"] = {"message": str(message_template)}
 
-    celery_app.send_task(
-        "app.notifications.tasks.send_trade_notification",
-        kwargs=payload,
-    )
+    if celery_app.conf.task_always_eager:
+        send_trade_notification.delay(**payload)
+    else:
+        celery_app.send_task(
+            "app.notifications.tasks.send_trade_notification",
+            kwargs=payload,
+        )
 
 
-# Celery worker task
 def _run_async(coro):
-    import asyncio
+    """
+    Run an async coroutine from a sync Celery worker context.
+    Safely handles both dedicated Celery worker threads (no running event loop)
+    and eager in-memory execution during async tests/endpoints where a loop is already running.
+    """
     try:
-        loop = asyncio.get_running_loop()
+        asyncio.get_running_loop()
+        import concurrent.futures
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+            return pool.submit(asyncio.run, coro).result()
     except RuntimeError:
-        loop = None
-
-    if loop and loop.is_running():
-        # In worker process there usually isn't a running loop; fallback.
-        return asyncio.create_task(coro)
-
-    return asyncio.run(coro)
+        return asyncio.run(coro)
 
 
 from app.notifications.celery_app import celery_app  # noqa: E402
@@ -109,6 +118,7 @@ def send_trade_notification(self, trade_id: str, dedup_key: str, message: dict) 
     """
     Worker-side delivery:
     - uses DB transition as idempotency guard
-    - retries on transient failures
+    - retries on transient failures with exponential backoff
     """
+    logger.info("Processing notification for trade %s", trade_id)
     _run_async(_send_notification_idempotent(trade_id=trade_id, dedup_key=dedup_key, message=message))
