@@ -1,0 +1,276 @@
+﻿python : 2026-07-21 02:43:22,351 INFO     [app.metrics.latency] Latency report flushed: count=5 p50=0.001ms p95=0.004ms 
+p99=0.004ms max=0.005ms
+At line:1 char:53
++ ... ING="utf-8"; python tests/test_design_spec_compliance.py 2>&1 | Out-F ...
++                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (2026-07-21 02:4...4ms max=0.005ms:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+2026-07-21 02:43:23,696 INFO     [httpx] HTTP Request: GET http://testserver/healthz "HTTP/1.1 200 OK"
+2026-07-21 02:43:23,717 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=730c5d71-7b24-4922-8d00-a5ac45f00d41 side=LONG 
+strike=23600 option=CE reason=+5.07% Spike
+2026-07-21 02:43:23,982 WARNING  [kombu.connection] No hostname was supplied. Reverting to default 'localhost'
+2026-07-21 02:43:24,017 INFO     [app.notifications.tasks] Processing notification for trade 730c5d71-7b24-4922-8d00-a5ac45f00d41
+2026-07-21 02:43:24,277 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! LONG NIFTY 23600 CE entered. Reason: +5.07% Spike'}
+2026-07-21 02:43:24,300 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[0970cc93-56f9-4ee2-8348-2d05f6526c65] succeeded in 0.28318090000539087s: None
+2026-07-21 02:43:24,314 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=f4d7acfe-064d-4eb3-a7f7-0935aed76910 side=LONG 
+strike=23600 option=CE reason=+5.12% Spike
+2026-07-21 02:43:24,315 INFO     [app.notifications.tasks] Processing notification for trade f4d7acfe-064d-4eb3-a7f7-0935aed76910
+2026-07-21 02:43:24,330 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! LONG NIFTY 23600 CE entered. Reason: +5.12% Spike'}
+2026-07-21 02:43:24,331 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[63053269-b9bf-4f64-8958-2315ee6a9dc6] succeeded in 0.016838200011989102s: None
+2026-07-21 02:43:24,345 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=3be948c0-5a10-4dbc-8a9c-cae3d2a7a85b side=LONG 
+strike=23650 option=CE reason=+5.16% Spike
+2026-07-21 02:43:24,345 INFO     [app.notifications.tasks] Processing notification for trade 3be948c0-5a10-4dbc-8a9c-cae3d2a7a85b
+2026-07-21 02:43:24,362 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! LONG NIFTY 23650 CE entered. Reason: +5.16% Spike'}
+2026-07-21 02:43:24,363 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[a06df7c1-88fb-4476-86e9-f64c2730149d] succeeded in 0.017864099994767457s: None
+2026-07-21 02:43:24,377 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=fa26860c-e22d-4e3e-ad3a-58b5526cabba side=SHORT 
+strike=22400 option=PE reason=-5.06% Spike
+2026-07-21 02:43:24,378 INFO     [app.notifications.tasks] Processing notification for trade fa26860c-e22d-4e3e-ad3a-58b5526cabba
+2026-07-21 02:43:24,395 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 22400 PE entered. Reason: -5.06% Spike'}
+2026-07-21 02:43:24,396 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[30b6fe7c-b6ed-4c82-aaf9-8f482cee370e] succeeded in 0.018402199988486245s: None
+2026-07-21 02:43:24,410 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=d21412a1-3e58-4710-91b4-7e13285baaff side=SHORT 
+strike=22450 option=PE reason=-5.14% Spike
+2026-07-21 02:43:24,410 INFO     [app.notifications.tasks] Processing notification for trade d21412a1-3e58-4710-91b4-7e13285baaff
+2026-07-21 02:43:24,427 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 22450 PE entered. Reason: -5.14% Spike'}
+2026-07-21 02:43:24,428 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[15471224-228f-48e6-b8a3-db69baf0f9d7] succeeded in 0.01770400002715178s: None
+2026-07-21 02:43:24,440 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=a3c1bb81-0469-41ca-825e-1353f7b23c9e side=SHORT 
+strike=22100 option=PE reason=-5.96% Spike
+2026-07-21 02:43:24,441 INFO     [app.notifications.tasks] Processing notification for trade a3c1bb81-0469-41ca-825e-1353f7b23c9e
+2026-07-21 02:43:24,456 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 22100 PE entered. Reason: -5.96% Spike'}
+2026-07-21 02:43:24,457 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[96fdf623-6725-47bf-b342-0ba85a74c718] succeeded in 0.016238800017163157s: None
+2026-07-21 02:43:24,471 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=e6d9649e-4643-4817-8b06-d73e2a8946a3 side=SHORT 
+strike=21900 option=PE reason=-6.41% Spike
+2026-07-21 02:43:24,472 INFO     [app.notifications.tasks] Processing notification for trade e6d9649e-4643-4817-8b06-d73e2a8946a3
+2026-07-21 02:43:24,488 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 21900 PE entered. Reason: -6.41% Spike'}
+2026-07-21 02:43:24,489 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[eb020fc1-3ae0-4665-93ac-7edd0ba245f9] succeeded in 0.017593299999134615s: None
+2026-07-21 02:43:24,501 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=ed4de37f-4408-434d-ab48-870bbe395a06 side=SHORT 
+strike=21700 option=PE reason=-6.87% Spike
+2026-07-21 02:43:24,501 INFO     [app.notifications.tasks] Processing notification for trade ed4de37f-4408-434d-ab48-870bbe395a06
+2026-07-21 02:43:24,517 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 21700 PE entered. Reason: -6.87% Spike'}
+2026-07-21 02:43:24,518 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[dccebe7f-c2f8-46cc-957d-5be019c4b239] succeeded in 0.017015699995681643s: None
+2026-07-21 02:43:24,534 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=ed2c745e-4bad-4e0a-b414-32bb6693f29f side=SHORT 
+strike=21500 option=PE reason=-7.33% Spike
+2026-07-21 02:43:24,535 INFO     [app.notifications.tasks] Processing notification for trade ed2c745e-4bad-4e0a-b414-32bb6693f29f
+2026-07-21 02:43:24,551 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 21500 PE entered. Reason: -7.33% Spike'}
+2026-07-21 02:43:24,553 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[6b8cc87e-ef72-43ed-baf0-dd29fbccb3e4] succeeded in 0.017781399976229295s: None
+2026-07-21 02:43:24,567 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=9c2986fb-9df5-47bd-be53-f500993ce534 side=SHORT 
+strike=21300 option=PE reason=-7.79% Spike
+2026-07-21 02:43:24,568 INFO     [app.notifications.tasks] Processing notification for trade 9c2986fb-9df5-47bd-be53-f500993ce534
+2026-07-21 02:43:24,587 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 21300 PE entered. Reason: -7.79% Spike'}
+2026-07-21 02:43:24,587 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[37f63e44-f56d-4892-bf88-97ec47709b63] succeeded in 0.01961769998888485s: None
+2026-07-21 02:43:24,913 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=d3321408-d272-4ded-aac1-c7b8d58423e3 side=SHORT 
+strike=21100 option=PE reason=-8.26% Spike
+2026-07-21 02:43:24,914 INFO     [app.notifications.tasks] Processing notification for trade d3321408-d272-4ded-aac1-c7b8d58423e3
+2026-07-21 02:43:24,992 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 21100 PE entered. Reason: -8.26% Spike'}
+2026-07-21 02:43:24,994 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[3c5ed511-2527-4ecf-b32a-acaa63f3718b] succeeded in 0.08048840000992641s: None
+2026-07-21 02:43:25,025 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=d58b1c73-94a0-4909-b0e8-7b17c1c19435 side=SHORT 
+strike=20900 option=PE reason=-8.73% Spike
+2026-07-21 02:43:25,027 INFO     [app.notifications.tasks] Processing notification for trade d58b1c73-94a0-4909-b0e8-7b17c1c19435
+2026-07-21 02:43:25,063 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 20900 PE entered. Reason: -8.73% Spike'}
+2026-07-21 02:43:25,066 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[08ff5f3a-d59a-49c7-a3ad-9b1a93f42bcc] succeeded in 0.038847000017995015s: None
+2026-07-21 02:43:25,204 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=84462241-86da-493f-abcf-cd29f605c8d8 side=SHORT 
+strike=20800 option=PE reason=-8.77% Spike
+2026-07-21 02:43:25,205 INFO     [app.notifications.tasks] Processing notification for trade 84462241-86da-493f-abcf-cd29f605c8d8
+2026-07-21 02:43:25,228 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 20800 PE entered. Reason: -8.77% Spike'}
+2026-07-21 02:43:25,230 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[2c661280-1392-4c66-9365-7590badb7d61] succeeded in 0.02494750000187196s: None
+2026-07-21 02:43:25,250 INFO     [app.pipeline.tick_pipeline] Trade persisted: id=1226c98d-b421-488d-98f8-9ab3910d749d side=SHORT 
+strike=20850 option=PE reason=-8.15% Spike
+2026-07-21 02:43:25,251 INFO     [app.notifications.tasks] Processing notification for trade 1226c98d-b421-488d-98f8-9ab3910d749d
+2026-07-21 02:43:25,291 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 20850 PE entered. Reason: -8.15% Spike'}
+2026-07-21 02:43:25,292 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[e61304de-eaa7-4182-ad4c-67bf32b7d31d] succeeded in 0.04180949999135919s: None
+2026-07-21 02:43:25,295 INFO     [app.metrics.latency] Latency report flushed: count=14 p50=0.079ms p95=0.174ms p99=0.207ms 
+max=0.216ms
+2026-07-21 02:43:25,296 INFO     [httpx] HTTP Request: POST http://testserver/debug/replay "HTTP/1.1 200 OK"
+2026-07-21 02:43:25,606 INFO     [app.notifications.tasks] Processing notification for trade 503eab9e-f883-4345-b806-bc47204c7fe0
+2026-07-21 02:43:25,638 INFO     [app.notifications.tasks] Notification delivered (no webhook configured): {'message': 'Trade 
+Alert! SHORT NIFTY 22500 PE entered. Reason: Reconciliation test'}
+2026-07-21 02:43:25,640 INFO     [celery.app.trace] Task 
+app.notifications.tasks.send_trade_notification[84737871-982a-4249-a41a-cc62999c1655] succeeded in 0.03394959997967817s: None
+2026-07-21 02:43:25,640 INFO     [app.reconciliation.beat] Reconciliation complete: 1 notifications re-enqueued out of 1 pending
+2026-07-21 02:43:25,660 INFO     [httpx] HTTP Request: POST http://testserver/ask "HTTP/1.1 200 OK"
+2026-07-21 02:43:25,672 INFO     [httpx] HTTP Request: POST http://testserver/ask "HTTP/1.1 200 OK"
+2026-07-21 02:43:25,681 INFO     [httpx] HTTP Request: POST http://testserver/ask "HTTP/1.1 200 OK"
+========================================================================
+  INSTANT STRIKE ΓÇö DESIGN DOCUMENT COMPLIANCE TEST SUITE
+========================================================================
+
+ΓöüΓöüΓöü PART 1: Infrastructure & Project Structure ΓöüΓöüΓöü
+  Γ£à 1.1 Dockerfile exists
+  Γ£à 1.1 Dockerfile has FROM python
+  Γ£à 1.1 Dockerfile has EXPOSE 8000
+  Γ£à 1.1 Dockerfile creates reports dir
+  Γ£à 1.2 docker-compose.yml exists
+  Γ£à 1.2 docker-compose has api:
+  Γ£à 1.2 docker-compose has worker:
+  Γ£à 1.2 docker-compose has beat:
+  Γ£à 1.2 docker-compose has redis:
+  Γ£à 1.2 docker-compose has postgres:
+  Γ£à 1.3 __init__.py exists in app/ai
+  Γ£à 1.3 __init__.py exists in app/metrics
+  Γ£à 1.3 __init__.py exists in app/notifications
+  Γ£à 1.3 __init__.py exists in app/persistence
+  Γ£à 1.3 __init__.py exists in app/pipeline
+  Γ£à 1.3 __init__.py exists in app/quant
+  Γ£à 1.3 __init__.py exists in app/reconciliation
+  Γ£à 1.3 __init__.py exists in app/routes
+  Γ£à 1.3 __init__.py exists in app/spikes
+  Γ£à 1.4 requirements.txt exists
+  Γ£à 1.4 requirements.txt has fastapi
+  Γ£à 1.4 requirements.txt has redis
+  Γ£à 1.4 requirements.txt has celery
+  Γ£à 1.4 requirements.txt has sqlalchemy
+  Γ£à 1.4 requirements.txt has asyncpg
+  Γ£à 1.4 requirements.txt has fastmcp
+  Γ£à 1.4 requirements.txt has websockets
+  Γ£à 1.4 requirements.txt has requests
+  Γ£à 1.4 requirements.txt has matplotlib
+  Γ£à 1.5 FastAPI uses lifespan (not on_event)
+
+ΓöüΓöüΓöü PART 3: ATM Strike Selection (Spec Table) ΓöüΓöüΓöü
+  Γ£à 3.1 22432 ΓåÆ 22450
+  Γ£à 3.1 22450 ΓåÆ 22450
+  Γ£à 3.1 22424 ΓåÆ 22400
+  Γ£à 3.1 22425 ΓåÆ 22450 (tie rounds up)
+  Γ£à 3.1 22400 ΓåÆ 22400
+  Γ£à 3.2 Instrument format 'sid:strike:type'
+
+ΓöüΓöüΓöü PART 12: WebSocket Ingestion Module ΓöüΓöüΓöü
+  Γ£à 12.1 ws_ingestion.py exists
+  Γ£à 12.1 start_ws_consumer callable
+  Γ£à 12.1 stop_ws_consumer callable
+  Γ£à 12.1 is_healthy callable
+  Γ£à 12.2 RECONNECT_BASE_DELAY defined
+  Γ£à 12.2 RECONNECT_MAX_DELAY defined
+  Γ£à 12.3 _parse_ws_message returns tick dict
+  Γ£à 12.3 Parsed tick has security_id
+  Γ£à 12.3 Parsed tick has ltp
+  Γ£à 12.3 Heartbeat returns None
+
+ΓöüΓöüΓöü PART 2: Spike Detection ΓÇö 60s Redis Rolling Window ΓöüΓöüΓöü
+  Γ£à 2.1 ZSET stores tick as score|member pair
+  Γ£à 2.1 Member format is 'unix_ms|ltp'
+  Γ£à 2.2 Data at t-60s retained (with buffer)
+  Γ£à 2.3 +5.45% triggers LONG (pct >= 0.05)
+  Γ£à 2.3 -6.03% triggers SHORT (pct <= -0.05)
+  Γ£à 2.4 +0.91% does NOT trigger spike
+
+ΓöüΓöüΓöü PART 4: Option Premium Sourcing ΓöüΓöüΓöü
+  Γ£à 4.1 Premium is deterministic (same input ΓåÆ same output)
+  Γ£à 4.1 Premium is positive
+  Γ£à 4.2 CE and PE premiums differ
+
+ΓöüΓöüΓöü PART 5: Latency Measurement (p99 < 50ms target) ΓöüΓöüΓöü
+  Γ£à 5.4 reset_latency_metrics() clears state
+  Γ£à 5.3 flush returns dict with count
+  Γ£à 5.3 flush has p50_ms
+  Γ£à 5.3 flush has p95_ms
+  Γ£à 5.3 flush has p99_ms
+  Γ£à 5.3 flush has max_ms
+  Γ£à 5.3 p99 < 50ms
+  Γ£à 5.3 reports/latency.json exists
+  Γ£à 5.3 Disk file count matches
+
+ΓöüΓöüΓöü PART 13: GET /healthz ΓöüΓöüΓöü
+  Γ£à 13.1 GET /healthz returns 200
+  Γ£à 13.1 Response has status=ok
+
+ΓöüΓöüΓöü PART 6: POST /debug/replay ΓÇö End-to-End Pipeline ΓöüΓöüΓöü
+  Γ£à 6.0 test_ticks.ndjson exists
+  Γ£à 6.1 POST /debug/replay returns 200
+  Γ£à 6.2 Response has 'accepted' count
+  Γ£à 6.2 Response has 'processed' count
+  Γ£à 6.2 Response has 'errors' count
+  Γ£à 6.2 Response has 'latency_report'
+  Γ£à 6.2 accepted == 50
+  Γ£à 6.2 processed == 50
+  Γ£à 6.2 errors == 0
+  Γ£à 6.3 Latency count > 0 (spikes detected)
+  Γ£à 6.3 p99 < 50ms
+  Γ£à 6.4 reports/latency.json written to disk
+
+ΓöüΓöüΓöü PART 7: Database Persistence (Async SQLAlchemy) ΓöüΓöüΓöü
+  Γ£à 7.1 Trades table populated
+  Γ£à 7.2 LONG (CE) trades exist
+  Γ£à 7.2 SHORT (PE) trades exist
+  Γ£à 7.2 Trade 730c5d71 strike divisible by 50
+  Γ£à 7.2 Trade 730c5d71 option_type valid
+  Γ£à 7.2 Trade 730c5d71 side valid
+  Γ£à 7.2 Trade 730c5d71 entry_price > 0
+  Γ£à 7.3 Trade 730c5d71 notification_status valid
+  Γ£à 7.4 Trade 730c5d71 dedup_key correct
+  Γ£à 7.2 Trade f4d7acfe strike divisible by 50
+  Γ£à 7.2 Trade f4d7acfe option_type valid
+  Γ£à 7.2 Trade f4d7acfe side valid
+  Γ£à 7.2 Trade f4d7acfe entry_price > 0
+  Γ£à 7.3 Trade f4d7acfe notification_status valid
+  Γ£à 7.4 Trade f4d7acfe dedup_key correct
+  Γ£à 7.2 Trade 3be948c0 strike divisible by 50
+  Γ£à 7.2 Trade 3be948c0 option_type valid
+  Γ£à 7.2 Trade 3be948c0 side valid
+  Γ£à 7.2 Trade 3be948c0 entry_price > 0
+  Γ£à 7.3 Trade 3be948c0 notification_status valid
+  Γ£à 7.4 Trade 3be948c0 dedup_key correct
+  (Checked 3 of 14 trades in detail; all 14 are in DB)
+
+ΓöüΓöüΓöü PART 8: Notification Idempotency (Celery) ΓöüΓöüΓöü
+  Γ£à 8.1 First _mark_notification_sent ΓåÆ True
+  Γ£à 8.2 Second _mark_notification_sent ΓåÆ False (idempotent)
+  Γ£à 8.1 notification_status transitioned to 'success'
+  Γ£à 8.3 Task has autoretry_for
+  Γ£à 8.3 Task has max_retries
+
+ΓöüΓöüΓöü PART 9: Reconciliation Beat ΓöüΓöüΓöü
+  Γ£à 9.1 Reconciliation sweep enqueued ΓëÑ 1 trade
+  Γ£à 9.2 Reconciled trade status ΓåÆ 'success'
+
+ΓöüΓöüΓöü PART 10: POST /ask ΓÇö Natural Language Endpoint ΓöüΓöüΓöü
+  Γ£à 10.1 /ask returns 200
+  Γ£à 10.1 Response has 'answer' key
+  Γ£à 10.2 'last trade' query returns trade data
+  Γ£à 10.3 'how many' query returns count
+  Γ£à 10.3 'CE vs PE' query returns comparison
+
+ΓöüΓöüΓöü PART 11: MCP Tools ΓöüΓöüΓöü
+  (fastmcp not installed locally ΓÇö verifying module structure instead)
+  Γ£à 11.1 mcp_server.py defines get_last_trade
+  Γ£à 11.2 mcp_server.py defines get_open_positions
+  Γ£à 11.3 mcp_server.py defines get_pnl_summary
+  Γ£à 11.4 mcp_server.py defines get_spike_events
+  Γ£à 11.5 mcp_server.py defines get_best_strike_accuracy
+  Γ£à 11.6 mcp_server.py defines generate_trade_chart
+  Γ£à 11.7 mcp_server.py uses @mcp.tool() decorator
+
+========================================================================
+  RESULTS:  118 passed  /  0 failed  /  118 total
+========================================================================
+
+  Γ£à ALL DESIGN DOCUMENT REQUIREMENTS VERIFIED SUCCESSFULLY Γ£à
+
